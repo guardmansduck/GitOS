@@ -10,7 +10,7 @@ const logoutBtn = document.getElementById("logout-btn");
 const statusBox = document.getElementById("status");
 
 // GitOS backend API (hosted on Vercel or wherever your backend is)
-const backendAuthUrl = "https://your-backend.vercel.app/api/auth";
+const backendAuthUrl = "https://gitos-backend.vercel.app/api/auth";
 
 // --- Login flow ---
 function login() {
