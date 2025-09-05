@@ -1,85 +1,80 @@
-body {
+/* Reset */
+* {
   margin: 0;
-  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
-  height: 100vh;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: Arial, sans-serif;
   display: flex;
-  align-items: center;
   justify-content: center;
+  align-items: center;
+  height: 100vh;
   background-size: cover;
   background-position: center;
   color: #fff;
 }
 
-.lockscreen {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 100%;
-}
-
-.lockscreen-window {
-  background: rgba(0, 0, 0, 0.5);
-  border-radius: 20px;
-  padding: 40px;
+/* Login container */
+.login-container {
+  background: rgba(0, 0, 0, 0.6);
+  padding: 2rem;
+  border-radius: 1rem;
   text-align: center;
-  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.5);
-  width: 300px;
+  width: 320px;
+  max-width: 90%;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4);
 }
 
-.avatar img {
-  width: 80px;
-  height: 80px;
-  border-radius: 50%;
-  margin-bottom: 20px;
-  border: 2px solid #fff;
+.login-container img#logo {
+  max-width: 80px;
+  margin-bottom: 1rem;
 }
 
-.welcome {
-  margin: 0;
+h1 {
+  margin-bottom: 1.5rem;
   font-size: 1.5rem;
-  font-weight: 600;
 }
 
-.status {
-  margin: 10px 0 20px;
-  font-size: 0.9rem;
-  opacity: 0.8;
-}
-
-.buttons {
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-}
-
-.btn {
-  padding: 10px;
-  border: none;
-  border-radius: 8px;
-  font-size: 1rem;
-  cursor: pointer;
-  background: #2ea44f;
-  color: white;
+/* GitHub login button */
+#login-btn {
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 8px;
-  transition: background 0.2s;
+  gap: 0.5rem;
+
+  padding: 0.75rem 1.25rem;
+  background-color: #24292f;
+  color: #fff;
+  border: none;
+  border-radius: 0.5rem;
+
+  font-size: 1rem;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background 0.2s ease;
+  margin: 0 auto;
 }
 
-.btn:hover {
-  background: #22863a;
+#login-btn:hover {
+  background-color: #333940;
 }
 
-.btn.danger {
-  background: #d73a49;
-}
-
-.btn.danger:hover {
-  background: #a62634;
-}
-
-.icon {
+#login-btn img {
   width: 20px;
   height: 20px;
 }
+
+/* User info */
+#user-info {
+  margin-top: 1.5rem;
+}
+
+#user-info img {
+  border-radius: 50%;
+  width: 60px;
+  height: 60px;
+  margin-bottom: 0.5rem;
+}
+
