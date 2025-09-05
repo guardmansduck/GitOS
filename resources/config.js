@@ -4,7 +4,7 @@
 
 const RESOURCES = {
   // Branding
-  logo: "logo.png",
+  logo: "s.png",
   background: "background.jpg",
 
   // Auth
