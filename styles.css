@@ -1,0 +1,89 @@
+/* Reset */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* Background */
+body {
+  height: 100vh;
+  width: 100vw;
+  background: linear-gradient(135deg, #1e3c72, #2a5298);
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Login Screen */
+#login-screen {
+  background: rgba(0, 0, 0, 0.6);
+  padding: 2rem;
+  border-radius: 12px;
+  text-align: center;
+  box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.4);
+}
+
+#login-screen h1 {
+  margin-bottom: 1.5rem;
+}
+
+button {
+  padding: 0.6rem 1.2rem;
+  border: none;
+  border-radius: 6px;
+  background-color: #0078d7;
+  color: white;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+
+button:hover {
+  background-color: #005a9e;
+}
+
+/* Desktop */
+#desktop {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  width: 100vw;
+  background: url("https://images.unsplash.com/photo-1506748686214-e9df14d4d9d0?auto=format&fit=crop&w=1920&q=80") 
+              no-repeat center center fixed;
+  background-size: cover;
+}
+
+/* Welcome message */
+#welcome {
+  margin: 2rem;
+  font-size: 1.5rem;
+  color: #fff;
+  text-shadow: 0px 1px 4px rgba(0,0,0,0.7);
+}
+
+/* Taskbar */
+#desktop::after {
+  content: "";
+  display: block;
+  height: 40px;
+}
+
+#desktop .taskbar {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 40px;
+  background: rgba(20, 20, 20, 0.85);
+  display: flex;
+  align-items: center;
+  padding: 0 10px;
+}
+
+#desktop .taskbar span {
+  color: #ccc;
+  margin-right: 15px;
+}
