@@ -15,7 +15,7 @@ const RESOURCES = {
 
   // Optional extras (you can add/remove as needed)
   wallpaper: "wallpaper.jpg",
-  favicon: "favicon.ico",
+  favicon: "faviconn.ico",
   loadingSpinner: "spinner.gif"
 };
 
