@@ -16,10 +16,18 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
 
-      - name: Replace placeholders with secrets
+      - name: Replace placeholders in app.js
         run: |
+          echo "Before replacement:"
+          grep "__CLIENT_ID__" app.js || true
+          grep "__REDIRECT_URI__" app.js || true
+
           sed -i "s|__CLIENT_ID__|${{ secrets.GITOS_CLIENT_ID }}|g" app.js
           sed -i "s|__REDIRECT_URI__|${{ secrets.GITOS_REDIRECT_URI }}|g" app.js
+
+          echo "After replacement:"
+          grep "client_id" app.js || true
+          grep "redirect_uri" app.js || true
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
@@ -30,7 +38,7 @@ jobs:
     runs-on: ubuntu-latest
     needs: build
     environment:
-      name: github-pages   # 👈 required for Pages deployment
+      name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
     steps:
       - name: Deploy to GitHub Pages
