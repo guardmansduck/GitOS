@@ -16,8 +16,10 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
 
-      - name: Replace placeholder with client ID
-        run: sed -i "s|__CLIENT_ID__|${{ secrets.GITOS_CLIENT_ID }}|g" app.js
+      - name: Replace placeholders with secrets
+        run: |
+          sed -i "s|__CLIENT_ID__|${{ secrets.GITOS_CLIENT_ID }}|g" app.js
+          sed -i "s|__REDIRECT_URI__|${{ secrets.GITOS_REDIRECT_URI }}|g" app.js
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
