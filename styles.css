@@ -39,7 +39,7 @@ h1 {
 
 /* GitHub login button */
 #login-btn {
-  display: flex;
+  display: inline-flex;              /* shrink to content */
   align-items: center;
   justify-content: center;
   gap: 0.5rem;
@@ -54,7 +54,10 @@ h1 {
   font-weight: bold;
   cursor: pointer;
   transition: background 0.2s ease;
-  margin: 0 auto;
+
+  width: auto;        /* 🚨 prevents full width */
+  max-width: 100%;    /* responsive safety */
+  margin: 0 auto;     /* center inside container */
 }
 
 #login-btn:hover {
@@ -77,4 +80,3 @@ h1 {
   height: 60px;
   margin-bottom: 0.5rem;
 }
-
