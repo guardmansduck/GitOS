@@ -1,89 +1,85 @@
-/* Reset */
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
-}
-
-/* Background */
 body {
+  margin: 0;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
   height: 100vh;
-  width: 100vw;
-  background: linear-gradient(135deg, #1e3c72, #2a5298);
-  color: white;
   display: flex;
-  justify-content: center;
   align-items: center;
+  justify-content: center;
+  background-size: cover;
+  background-position: center;
+  color: #fff;
 }
 
-/* Login Screen */
-#login-screen {
-  background: rgba(0, 0, 0, 0.6);
-  padding: 2rem;
-  border-radius: 12px;
+.lockscreen {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+}
+
+.lockscreen-window {
+  background: rgba(0, 0, 0, 0.5);
+  border-radius: 20px;
+  padding: 40px;
   text-align: center;
-  box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.4);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.5);
+  width: 300px;
 }
 
-#login-screen h1 {
-  margin-bottom: 1.5rem;
+.avatar img {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  margin-bottom: 20px;
+  border: 2px solid #fff;
 }
 
-button {
-  padding: 0.6rem 1.2rem;
-  border: none;
-  border-radius: 6px;
-  background-color: #0078d7;
-  color: white;
-  font-size: 1rem;
-  cursor: pointer;
-  transition: background 0.2s ease;
+.welcome {
+  margin: 0;
+  font-size: 1.5rem;
+  font-weight: 600;
 }
 
-button:hover {
-  background-color: #005a9e;
+.status {
+  margin: 10px 0 20px;
+  font-size: 0.9rem;
+  opacity: 0.8;
 }
 
-/* Desktop */
-#desktop {
+.buttons {
   display: flex;
   flex-direction: column;
-  height: 100vh;
-  width: 100vw;
-  background: url("https://images.unsplash.com/photo-1506748686214-e9df14d4d9d0?auto=format&fit=crop&w=1920&q=80") 
-              no-repeat center center fixed;
-  background-size: cover;
+  gap: 10px;
 }
 
-/* Welcome message */
-#welcome {
-  margin: 2rem;
-  font-size: 1.5rem;
-  color: #fff;
-  text-shadow: 0px 1px 4px rgba(0,0,0,0.7);
-}
-
-/* Taskbar */
-#desktop::after {
-  content: "";
-  display: block;
-  height: 40px;
-}
-
-#desktop .taskbar {
-  position: fixed;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  height: 40px;
-  background: rgba(20, 20, 20, 0.85);
+.btn {
+  padding: 10px;
+  border: none;
+  border-radius: 8px;
+  font-size: 1rem;
+  cursor: pointer;
+  background: #2ea44f;
+  color: white;
   display: flex;
   align-items: center;
-  padding: 0 10px;
+  justify-content: center;
+  gap: 8px;
+  transition: background 0.2s;
 }
 
-#desktop .taskbar span {
-  color: #ccc;
-  margin-right: 15px;
+.btn:hover {
+  background: #22863a;
+}
+
+.btn.danger {
+  background: #d73a49;
+}
+
+.btn.danger:hover {
+  background: #a62634;
+}
+
+.icon {
+  width: 20px;
+  height: 20px;
 }
