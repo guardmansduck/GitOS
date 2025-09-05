@@ -5,6 +5,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>GitOS</title>
   <link rel="stylesheet" href="styles.css" />
+  <link id="favicon" rel="icon" type="image/x-icon" />
+  <!-- Load resource config first -->
   <script src="resources/config.js"></script>
 </head>
 <body>
@@ -20,15 +22,21 @@
       <p id="username"></p>
     </div>
   </div>
+
+  <!-- Scripts -->
   <script src="app.js"></script>
   <script>
-    // Inject resources dynamically
+    // Inject resources from config.js
     document.getElementById("logo").src = getResourcePath("logo");
     document.getElementById("github-icon").src = getResourcePath("githubIcon");
     document.getElementById("avatar").src = getResourcePath("avatarPlaceholder");
 
-    // Optional: background image
+    // Background image
     document.body.style.backgroundImage = `url('${getResourcePath("background")}')`;
+
+    // Favicon
+    const favicon = document.getElementById("favicon");
+    favicon.href = getResourcePath("favicon");
   </script>
 </body>
 </html>
