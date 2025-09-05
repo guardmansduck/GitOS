@@ -1,54 +1,76 @@
-// Placeholders replaced by GitHub Actions before deploy
-const clientId = "__CLIENT_ID__";
-const redirectUri = "__REDIRECT_URI__";
+// app.js
 
-function loginWithGitHub() {
-  const githubAuthUrl = `https://github.com/login/oauth/authorize?client_id=${clientId}&redirect_uri=${redirectUri}`;
-  window.location.href = githubAuthUrl;
+// Grab settings from config.js
+const clientId = CONFIG.CLIENT_ID;
+const redirectUri = CONFIG.REDIRECT_URI;
+
+// DOM elements
+const loginBtn = document.getElementById("login-btn");
+const logoutBtn = document.getElementById("logout-btn");
+const statusBox = document.getElementById("status");
+
+// GitOS backend API (hosted on Vercel or wherever your backend is)
+const backendAuthUrl = "https://your-backend.vercel.app/api/auth";
+
+// --- Login flow ---
+function login() {
+  const authUrl = `https://github.com/login/oauth/authorize?client_id=${clientId}&redirect_uri=${encodeURIComponent(
+    redirectUri
+  )}&scope=read:user`;
+  window.location.href = authUrl;
 }
 
+// --- Logout flow ---
 function logout() {
-  // Clear token
-  localStorage.removeItem("gitos_token");
-
-  // Show login screen again
-  document.getElementById("desktop").style.display = "none";
-  document.getElementById("login-screen").style.display = "block";
+  localStorage.removeItem("access_token");
+  statusBox.innerText = "Logged out.";
+  loginBtn.style.display = "inline-block";
+  logoutBtn.style.display = "none";
 }
 
-// Parse query params
-const params = new URLSearchParams(window.location.search);
-const token = params.get("token");
+// --- Handle redirect from GitHub ---
+async function handleRedirect() {
+  const urlParams = new URLSearchParams(window.location.search);
+  const code = urlParams.get("code");
 
-if (token) {
-  // Save token for later use
-  localStorage.setItem("gitos_token", token);
+  if (code) {
+    try {
+      statusBox.innerText = "Exchanging code for token…";
 
-  // 🔑 Remove ?token=... from URL
-  window.history.replaceState({}, document.title, window.location.pathname);
+      const res = await fetch(`${backendAuthUrl}?code=${code}`);
+      const data = await res.json();
 
-  showDesktop(token);
-} else {
-  // If token already in localStorage, auto-login
-  const savedToken = localStorage.getItem("gitos_token");
-  if (savedToken) {
-    showDesktop(savedToken);
+      if (data.access_token) {
+        localStorage.setItem("access_token", data.access_token);
+        statusBox.innerText = "✅ Logged in!";
+        loginBtn.style.display = "none";
+        logoutBtn.style.display = "inline-block";
+
+        // Clean up the URL (remove ?code=…)
+        window.history.replaceState({}, document.title, redirectUri);
+      } else {
+        statusBox.innerText = "❌ Failed to log in.";
+      }
+    } catch (err) {
+      console.error("Auth error:", err);
+      statusBox.innerText = "❌ Error during login.";
+    }
+  } else {
+    // Auto-login if already have token
+    const token = localStorage.getItem("access_token");
+    if (token) {
+      statusBox.innerText = "✅ Already logged in.";
+      loginBtn.style.display = "none";
+      logoutBtn.style.display = "inline-block";
+    } else {
+      statusBox.innerText = "Not logged in.";
+    }
   }
 }
 
-function showDesktop(token) {
-  document.getElementById("login-screen").style.display = "none";
-  document.getElementById("desktop").style.display = "block";
+// --- Wire up buttons ---
+loginBtn.addEventListener("click", login);
+logoutBtn.addEventListener("click", logout);
 
-  // Fetch user profile from GitHub
-  fetch("https://api.github.com/user", {
-    headers: { Authorization: `token ${token}` }
-  })
-    .then(res => res.json())
-    .then(user => {
-      document.getElementById("welcome").innerText = `Hello, ${user.login}!`;
-    })
-    .catch(() => {
-      document.getElementById("welcome").innerText = "Welcome!";
-    });
-}
+// --- Run on page load ---
+handleRedirect();
