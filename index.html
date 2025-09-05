@@ -3,32 +3,32 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>GitOS Login</title>
+  <title>GitOS</title>
   <link rel="stylesheet" href="styles.css" />
+  <script src="resources/config.js"></script>
 </head>
-<body style="background-image: url('resources/background.jpg');">
-  <div class="lockscreen">
-    <div class="lockscreen-window">
-      <div class="avatar">
-        <img src="resources/avatar.png" alt="User Avatar" />
-      </div>
-      <h1 class="welcome">Welcome to GitOS</h1>
-      <p class="status" id="status">Checking login status…</p>
-
-      <div class="buttons">
-        <button id="login-btn" class="btn">
-          <img src="resources/github-icon.png" alt="GitHub Logo" class="icon" />
-          Sign in with GitHub
-        </button>
-        <button id="logout-btn" class="btn danger" style="display:none;">
-          Logout
-        </button>
-      </div>
+<body>
+  <div class="login-container">
+    <img id="logo" alt="GitOS Logo" />
+    <h1>Welcome to GitOS</h1>
+    <button id="login-btn">
+      <img id="github-icon" alt="GitHub Icon" />
+      Sign in with GitHub
+    </button>
+    <div id="user-info" style="display: none;">
+      <img id="avatar" alt="User Avatar" />
+      <p id="username"></p>
     </div>
   </div>
-
-  <!-- Scripts -->
-  <script src="config.js"></script>
   <script src="app.js"></script>
+  <script>
+    // Inject resources dynamically
+    document.getElementById("logo").src = getResourcePath("logo");
+    document.getElementById("github-icon").src = getResourcePath("githubIcon");
+    document.getElementById("avatar").src = getResourcePath("avatarPlaceholder");
+
+    // Optional: background image
+    document.body.style.backgroundImage = `url('${getResourcePath("background")}')`;
+  </script>
 </body>
 </html>
